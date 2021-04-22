@@ -1,0 +1,19 @@
+﻿<Window x:Class="WPFSerialization.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFSerialization"
+        mc:Ignorable="d"
+        Title="Window2" Height="450" Width="800">
+    <Grid>
+        <Button Content="Add Property" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click_1"/>
+        <Button Content="Edit Property" HorizontalAlignment="Left" Margin="45,90,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click"/>
+        <Button Content="Remove Property" HorizontalAlignment="Left" Margin="45,170,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click_2"/>
+        <Button Content="Clear Properties" HorizontalAlignment="Left" Margin="45,267,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click_3"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="410,327,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click_4"/>
+        <ListBox Name="listBox1" HorizontalAlignment="Left" Height="312" Margin="200,10,0,0" VerticalAlignment="Top" Width="566"/>
+        <Label Content="Refresh properties if they hide" Margin="375,387,208.6,-12"/>
+
+    </Grid>
+</Window>
