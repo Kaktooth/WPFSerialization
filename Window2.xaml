@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFSerialization"
         mc:Ignorable="d"
-        Title="Window2" Height="450" Width="800">
+        Title="Window2" Height="450" Width="800" Background="#FF4B778D">
     <Grid>
-        <Button Content="Add Property" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click_1"/>
-        <Button Content="Edit Property" HorizontalAlignment="Left" Margin="45,90,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click"/>
-        <Button Content="Remove Property" HorizontalAlignment="Left" Margin="45,170,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click_2"/>
-        <Button Content="Clear Properties" HorizontalAlignment="Left" Margin="45,267,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click_3"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" Margin="410,327,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click_4"/>
-        <ListBox Name="listBox1" HorizontalAlignment="Left" Height="312" Margin="200,10,0,0" VerticalAlignment="Top" Width="566"/>
+        <Button Content="Add Property" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click_1" Background="#FF8FD9A8"/>
+        <Button Content="Edit Property" HorizontalAlignment="Left" Margin="45,90,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click" Background="#FF8FD9A8"/>
+        <Button Content="Remove Property" HorizontalAlignment="Left" Margin="45,170,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click_2" Background="#FF8FD9A8"/>
+        <Button Content="Clear Properties" HorizontalAlignment="Left" Margin="45,267,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click_3" Background="#FF8FD9A8"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="410,327,0,0" VerticalAlignment="Top" Width="128" Height="55" Click="Button_Click_4" Background="#FF8FD9A8"/>
+        <ListBox Name="listBox1" HorizontalAlignment="Left" Height="312" Margin="200,10,0,0" VerticalAlignment="Top" Width="566" Background="#FF28B5B5"/>
         <Label Content="Refresh properties if they hide" Margin="375,387,208.6,-12"/>
 
     </Grid>

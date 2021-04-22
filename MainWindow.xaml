@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFSerialization"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing" Loaded="Window_Loaded" Background="#FF4B778D">
     <Grid>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="124,69,0,0" VerticalAlignment="Top" Width="102" Height="37" Click="Button_Click"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="124,128,0,0" VerticalAlignment="Top" Width="102" Height="37" Click="Button_Click_1"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="127,211,0,0" VerticalAlignment="Top" Width="102" Height="37" Click="Button_Click_2"/>
-        <ListBox Name="listBox1" HorizontalAlignment="Left" Height="260" Margin="250,51,0,0" VerticalAlignment="Top" Width="511"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="124,69,0,0" VerticalAlignment="Top" Width="102" Height="37" Click="Button_Click" Background="#FF8FD9A8"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="124,128,0,0" VerticalAlignment="Top" Width="102" Height="37" Click="Button_Click_1" Background="#FF8FD9A8"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="124,215,0,0" VerticalAlignment="Top" Width="102" Height="37" Click="Button_Click_2" Background="#FF8FD9A8"/>
+        <ListBox Name="listBox1" HorizontalAlignment="Left" Height="260" Margin="250,51,0,0" VerticalAlignment="Top" Width="511" Background="#FF28B5B5"/>
 
     </Grid>
 </Window>
