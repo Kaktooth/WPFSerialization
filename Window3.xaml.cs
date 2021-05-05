@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WPFSerialization
 {
@@ -40,7 +32,7 @@ namespace WPFSerialization
 
                 ListBox plist = (ListBox)Application.Current.Windows[0].FindName("listBox1");
                 ListBox pslist = (ListBox)Application.Current.Windows[2].FindName("listBox1");
-                
+
                 if (pslist != null && pslist.Items.Count != 0)
                 {
                     Property p = (Property)pslist.SelectedItem;
@@ -86,12 +78,12 @@ namespace WPFSerialization
                     geo.Add((Point)point);
                 }
                 Description d = new Description(Convert.ToInt32(textBox4.Text), (Description.SoilType)comboBox2.SelectedItem, geo);
-                
+
                 textBox5.Text.Replace(".", ",");
                 double price = Convert.ToDouble(textBox5.Text);
                 Property p = new Property(a, o, d, price);
 
-              
+
                 l.AddProperty(p);
                 this.Close();
             }
@@ -117,7 +109,7 @@ namespace WPFSerialization
             }
         }
 
-      
+
 
         private void textBox4_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -155,8 +147,8 @@ namespace WPFSerialization
             {
                 return;
             }
-            
-            
+
+
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)
@@ -186,7 +178,7 @@ namespace WPFSerialization
             {
                 textBox3.Background = Brushes.Red;
             }
-            if(textBox3.Text == "")
+            if (textBox3.Text == "")
             {
                 textBox3.Background = Brushes.White;
             }

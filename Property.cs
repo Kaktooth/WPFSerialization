@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Serialization;
 
 namespace WPFSerialization
 {
+    [XmlType("Appointment")]
     [Serializable]
-    class Appointment
+    public class Appointment
     {
         public enum AppointmentValue { UnderBuilding, Agricultural, Reserved }
         AppointmentValue appointmentValue;
@@ -22,10 +21,12 @@ namespace WPFSerialization
             return "Appointment: " + appointmentValue.ToString();
         }
     }
+    [XmlType("Owner")]
+    [XmlInclude(typeof(Owner)), XmlInclude(typeof(Appointment)), XmlInclude(typeof(Description)), XmlInclude(typeof(Property))]
     [Serializable]
-    class Owner
+    public class Owner
     {
-
+        [XmlElement("Name")]
         public string Name
         {
             get
@@ -38,7 +39,7 @@ namespace WPFSerialization
             }
         }
         private string name;
-
+        [XmlElement("SurName")]
         public string Surname
         {
             get
@@ -51,7 +52,7 @@ namespace WPFSerialization
             }
         }
         private string surname;
-
+        [XmlElement("birthDay")]
         DateTime birthDay { get; set; }
         public Owner() { }
         public Owner(string Name, string Surname, DateTime birthDay)
@@ -65,13 +66,18 @@ namespace WPFSerialization
             return "Name: " + name + " Surname: " + surname + " Birthday: " + birthDay.ToString();
         }
     }
+    [XmlType("Description")]
+    [XmlInclude(typeof(Owner)), XmlInclude(typeof(Appointment)), XmlInclude(typeof(Description)), XmlInclude(typeof(Property))]
     [Serializable]
-    class Description
+    public class Description
     {
-        private int waterLevel { get; set; }
+        [XmlElement("waterLevel")]
+        public int waterLevel { get; set; }
         public enum SoilType { Sandy, Clay, Silt, Peat, Chalk, Loam }
         private SoilType soilType;
-        private List<Point> geodeticReference;
+        [XmlArray("geodeticReference")]
+        [XmlArrayItem("Points")]
+        public List<Point> geodeticReference;
         public void AddPoint(Point point)
         {
             geodeticReference.Add(point);
@@ -101,13 +107,20 @@ namespace WPFSerialization
             return "ground water level: " + waterLevel + " Soil type: " + soilType + " " + str;
         }
     }
+    [XmlType("Property")]
+    [XmlInclude(typeof(Owner)), XmlInclude(typeof(Appointment)), XmlInclude(typeof(Description)), XmlInclude(typeof(Property))]
     [Serializable]
-    class Property
+    public class Property
     {
-        private Appointment Appointment { get; set; }
-        private Owner Owner { get; set; }
-        private Description Description { get; set; }
-        private double Price { get; set; }
+        [XmlElement("Appointment")]
+        public Appointment Appointment { get; set; }
+        [XmlElement("Owner")]
+        public Owner Owner { get; set; }
+        [XmlElement("Description")]
+        public Description Description { get; set; }
+        [XmlElement("Price")]
+        public double Price { get; set; }
+
         public string Information()
         {
             return "Owner surname: " + Owner.Surname + " Price: " + Price;
@@ -127,14 +140,19 @@ namespace WPFSerialization
         }
 
     }
+    [XmlRoot("Locality")]
+    [XmlInclude(typeof(Owner)), XmlInclude(typeof(Appointment)), XmlInclude(typeof(Description)), XmlInclude(typeof(Property))]
     [Serializable]
-    class Locality
+    public class Locality
     {
+        [XmlElement("serialNumber")]
+        public int serialNumber { get; set; }
 
-        private int serialNumber { get; set; }
-
+        [XmlArray("Properties")]
+        [XmlArrayItem("Property")]
         public List<Property> plots = new List<Property>();
-        static int Count;
+        [XmlElement("Count")]
+        public static int Count;
 
         public void AddProperty(Property property)
         {
@@ -165,6 +183,8 @@ namespace WPFSerialization
             return str;
 
         }
+        public Locality() { }
+     
         public Locality(int count)
         {
             Count = count;

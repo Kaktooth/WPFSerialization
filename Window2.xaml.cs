@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WPFSerialization
 {
@@ -41,13 +31,13 @@ namespace WPFSerialization
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
+
             Locality l = (Locality)((ListBox)Application.Current.Windows[0].FindName("listBox1")).SelectedItem;
 
             if (listBox1.SelectedItem != null)
             {
                 string p = (listBox1.SelectedItem).ToString();
-           
+
                 string[] str = p.Trim().Split(' ');
                 MessageBox.Show(p);
                 Window3 f3 = new Window3();
@@ -86,7 +76,7 @@ namespace WPFSerialization
                     ((ListBox)f3.listBox1).Items.Add(new Point(Convert.ToInt32(st[0]), Convert.ToInt32(st[1])));
                 }
             (f3.textBox5).Text = str[10];
-                
+
                 f3.ShowDialog();
                 if (l.plots != null)
                 {
@@ -108,14 +98,14 @@ namespace WPFSerialization
             //    if()
             //    listL.Add((Locality)item);
             //}
-           
-            Locality l =(Locality)((ListBox)Application.Current.Windows[0].FindName("listBox1")).SelectedItem;
+
+            Locality l = (Locality)((ListBox)Application.Current.Windows[0].FindName("listBox1")).SelectedItem;
             ListBox list = ((ListBox)Application.Current.Windows[0].FindName("listBox1"));
             l.RemoveProperty((Property)listBox1.SelectedItem);
             listBox1.Items.Remove((Property)listBox1.SelectedItem);
             //list.Items.Remove((Property)listBox1.SelectedItem);
             //list.Items.Clear();
-       
+
             //list.Items.Add(l);
             //foreach (var item in listL)
             //{
@@ -139,7 +129,7 @@ namespace WPFSerialization
             l.ClearProperty();
             listBox1.Items.Clear();
             //list.Items.Add(l);
-            
+
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
