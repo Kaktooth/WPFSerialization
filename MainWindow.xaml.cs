@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
@@ -19,10 +20,11 @@ namespace WPFSerialization
 
             comboBox1.Items.Add(Serialization.Binary);
             comboBox1.Items.Add(Serialization.XML);
+            comboBox1.Items.Add(Serialization.Json);
             comboBox1.SelectedItem = comboBox1.Items[0];
         }
-        public enum Serialization { Binary, XML }
-        
+        public enum Serialization { Binary, XML, Json }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -50,6 +52,7 @@ namespace WPFSerialization
         }
         private String fileNameBinary = Directory.GetCurrentDirectory() + "\\SerializedData.txt";
         private String fileNameXML = Directory.GetCurrentDirectory() + "\\SerializedData.xml";
+        private String fileNameJson = Directory.GetCurrentDirectory() + "\\SerializedData.json";
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -66,13 +69,16 @@ namespace WPFSerialization
 
                 FileStream fsBinary = new FileStream(fileNameBinary, FileMode.Create);
                 FileStream fsXML = new FileStream(fileNameXML, FileMode.Create);
-                // Construct a BinaryFormatter and use it to serialize the data to the stream.
                 BinaryFormatter formatter = new BinaryFormatter();
+
                 try
                 {
-                    
-                    xmlFormatter.Serialize(fsXML, list);
+
+                    string json = JsonConvert.SerializeObject(list);
+                    File.WriteAllText(fileNameJson, json);
                     formatter.Serialize(fsBinary, list);
+                    xmlFormatter.Serialize(fsXML, list);
+
                 }
                 catch (SerializationException ex)
                 {
@@ -90,7 +96,8 @@ namespace WPFSerialization
         private void Deserialize(object sender, RoutedEventArgs e)
         {
             try
-            {     
+            {
+                listBox1.Items.Clear();
                 switch ((Serialization)comboBox1.SelectedItem)
                 {
                     case Serialization.Binary:
@@ -146,6 +153,29 @@ namespace WPFSerialization
                             listBox1.Items.Add(locality);
                         }
                         break;
+                    case Serialization.Json:
+                        if (!(File.Exists(fileNameJson)))
+                        {
+                            File.Create(fileNameJson);
+                        }
+                        List<Locality> localityList = new List<Locality>();
+                        try
+                        {
+                            string json = File.ReadAllText(fileNameJson);
+                            localityList = JsonConvert.DeserializeObject<List<Locality>>(json);
+
+                        }
+                        catch (SerializationException ex)
+                        {
+                            Console.WriteLine("Failed to open serializable file. File not created yet? ");
+                            throw;
+                        }
+
+                        foreach (var p in localityList)
+                        {
+                            listBox1.Items.Add(p);
+                        }
+                        break;
                     default:
                         Console.WriteLine("Please change method");
                         break;
@@ -153,7 +183,7 @@ namespace WPFSerialization
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString() + " " + fileNameBinary+fileNameXML);
+                MessageBox.Show(ex.ToString() + " " + fileNameBinary + fileNameXML);
 
             }
         }

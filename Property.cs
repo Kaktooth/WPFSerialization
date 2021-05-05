@@ -184,7 +184,7 @@ namespace WPFSerialization
 
         }
         public Locality() { }
-     
+
         public Locality(int count)
         {
             Count = count;
