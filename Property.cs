@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Xml.Serialization;
@@ -9,8 +9,9 @@ namespace WPFSerialization
     [Serializable]
     public class Appointment
     {
-        public enum AppointmentValue { UnderBuilding, Agricultural, Reserved }
-        AppointmentValue appointmentValue;
+        public enum AppointmentValue {[XmlEnum(Name = "UnderBuilding")] UnderBuilding, [XmlEnum(Name = "Agricultural")] Agricultural, [XmlEnum(Name = "Reserved")] Reserved }
+        [XmlElement("appointmentValue")]
+        public AppointmentValue appointmentValue { get; set; }
         public Appointment() { }
         public Appointment(AppointmentValue v)
         {
@@ -53,7 +54,7 @@ namespace WPFSerialization
         }
         private string surname;
         [XmlElement("birthDay")]
-        DateTime birthDay { get; set; }
+        public DateTime birthDay { get; set; }
         public Owner() { }
         public Owner(string Name, string Surname, DateTime birthDay)
         {
@@ -73,8 +74,10 @@ namespace WPFSerialization
     {
         [XmlElement("waterLevel")]
         public int waterLevel { get; set; }
+        
         public enum SoilType { Sandy, Clay, Silt, Peat, Chalk, Loam }
-        private SoilType soilType;
+        [XmlElement("soilType")]
+        public SoilType soilType;
         [XmlArray("geodeticReference")]
         [XmlArrayItem("Points")]
         public List<Point> geodeticReference;
